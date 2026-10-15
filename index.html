@@ -1,177 +1,524 @@
- <!DOCTYPE html>
+ <<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Birthday!</title>
+  <meta name="theme-color" content="#fff0f5">
+
+  <title>A Little Birthday Surprise 🎂</title>
+
   <style>
-    body {
+    :root {
+      --pink: #ffe0eb;
+      --deep-pink: #ff6f9f;
+      --lavender: #e9ddff;
+      --text: #633b50;
+      --white: #ffffff;
+    }
+
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
-      background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
-      font-family: Arial, sans-serif;
+      padding: 24px 16px;
       overflow-x: hidden;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--text);
+      background: linear-gradient(
+        135deg,
+        #fff0f5,
+        #ffe1ed,
+        #f0e6ff,
+        #fff4e8
+      );
+      background-size: 300% 300%;
+      animation: backgroundFlow 12s ease infinite;
     }
-    .birthday-card {
-      text-align: center;
-      max-width: 400px;
-      margin: 20px;
-      padding: 30px;
-      background-color: #ffffff;
-      border-radius: 15px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-      z-index: 10;
-      position: relative;
-    h1 {
-      color: #ff4757;
-      margin-bottom: 10px;
-      font-size: 26px;
-    }
-    p {
-      color: #555;
-      font-size: 16px;
-      line-height: 1.5;
-    }
-    .signature {
-      margin-top: 20px;
-      margin-bottom: 25px;
-      font-weight: bold;
-      color: #2ed573;
-    }
-    .btn-container {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      align-items: center;
-    }
-    .btn {
-      background-color: #ff4757;
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      font-size: 14px;
-      border-radius: 25px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: transform 0.1s, background 0.2s;
-      width: 80%;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-    .btn:hover {
-      background-color: #e84118;
-      transform: scale(1.03);
-    }
-    .btn:active {
-      transform: scale(0.98);
-    }
-    .secondary-btn {
-      background-color: #341f97;
-    }
-    .secondary-btn:hover {
-      background-color: #5f27cd;
-    }
-    #secretMessage {
-      display: none;
-      margin-top: 15px;
-      padding: 10px;
-      background: #f1f2f6;
-      border-left: 4px solid #ff4757;
-      border-radius: 4px;
-      font-style: italic;
-    }
-    .confetti {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      opacity: 0.8;
-      top: -10px;
-      z-index: 1;
-      animation: fall linear infinite;
-    }
-    @keyframes fall {
-      0% { top: -10px; transform: translateX(0) rotate(0deg); }
-      100% { top: 100vh; transform: translateX(100px) rotate(360deg); }
-    }
-  </style>
-</head>
-<body>
 
-  <div id="confetti-wrapper"></div>
-
-  <div class="birthday-card">
-    <!-- 📸 CHANGE IMAGE LINK HERE -->
-    <img class="friend-photo" src="https://unsplash.com" alt="Friend's Photo">
-
-    <!-- ✍️ EDIT TEXT BELOW -->
-    <h1>🎉 Happy Birthday, BELL! 🎂</h1>
-    <p>Wishing you an amazing day filled with great food, good laughs, and all your favorite things.</p>
-    <p>Here is to another fantastic year ahead,I LOB U!</p>
-    <div class="signature">– From ERI</div>
-
-    <div class="btn-container">
-      <button class="btn" id="musicBtn" onclick="toggleMusic()">🎵 Play Birthday Music</button>
-      <button class="btn secondary-btn" onclick="revealMessage()">🎁 Open Surprise Gift</button>
-    </div>
-
-    <div id="secretMessage">
-      I am so incredibly lucky to have you as a friend. Cheers to celebrating you today! 🥳✨
-    </div>
-<audio id="birthdayAudio" loop>
-  <source src="https://soundhelix.com" type="audio/mpeg">
-</audio>
-  </div>
-
-  <script>
-    const audio = document.getElementById('birthdayAudio');
-    const musicBtn = document.getElementById('musicBtn');
-
-    function toggleMusic() {
-      if (audio.paused) {
-        audio.play();
-        musicBtn.innerText = "⏸️ Pause Music";
-      } else {
-        audio.pause();
-        musicBtn.innerText = "🎵 Play Birthday Music";
+    @keyframes backgroundFlow {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
       }
     }
 
-    function revealMessage() {
-      const message = document.getElementById('secretMessage');
-      message.style.display = message.style.display === "block" ? "none" : "block";
+    .orb {
+      position: fixed;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      filter: blur(55px);
+      opacity: 0.45;
+      z-index: -1;
+      pointer-events: none;
     }
 
-    const wrapper = document.getElementById('confetti-wrapper');
-    const colors = ['#ff4757', '#2ed573', '#1e90ff', '#ffa502', '#eccc68', '#ff6b81', '#70a1ff'];
+    .orb-one {
+      top: -60px;
+      left: -60px;
+      background: #ff9ec5;
+    }
 
-    for (let i = 0; i < 100; i++) {
-      const confetti = document.createElement('div');
-      confetti.classList.add('confetti');
-      confetti.style.left = Math.random() * 100 + 'vw';
-      confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
-      confetti.style.animationDelay = (Math.random() * 5) + 's';
-      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-      if (Math.random() > 0.5) confetti.style.borderRadius = '50%';
-      confetti.style.width = Math.random() * 8 + 6 + 'px';
-      confetti.style.height = Math.random() * 12 + 6 + 'px';
-      wrapper.appendChild(confetti);
+    .orb-two {
+      right: -60px;
+      bottom: -60px;
+      background: #c9b2ff;
+    }
+
+    .birthday-card {
+      width: 100%;
+      max-width: 540px;
+      padding: 38px 28px;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.72);
+      box-shadow: 0 20px 60px rgba(160, 92, 125, 0.16);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      animation: cardEntrance 1s ease both;
+    }
+
+    @keyframes cardEntrance {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .top-label {
+      display: inline-block;
+      padding: 8px 16px;
+      margin-bottom: 22px;
+      border-radius: 50px;
+      background: #fff0f6;
+      color: #c64e7e;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .birthday-icon {
+      font-size: 76px;
+      line-height: 1.3;
+      margin-bottom: 14px;
+      display: inline-block;
+      animation: cakeFloat 3s ease-in-out infinite;
+    }
+
+    @keyframes cakeFloat {
+      0%, 100% {
+        transform: translateY(0) rotate(-3deg);
+      }
+      50% {
+        transform: translateY(-10px) rotate(3deg);
+      }
+    }
+
+    h1 {
+      margin-bottom: 12px;
+      font-size: clamp(30px, 7vw, 43px);
+      line-height: 1.2;
+      color: #d94f87;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    .subtitle {
+      margin-bottom: 25px;
+      font-size: 15px;
+      letter-spacing: 1px;
+      color: #997083;
+    }
+
+    .divider {
+      width: 70px;
+      height: 3px;
+      margin: 0 auto 25px;
+      border-radius: 5px;
+      background: linear-gradient(
+        90deg,
+        #ff91b8,
+        #c8a6ff
+      );
+    }
+
+    .message {
+      font-size: 16px;
+      line-height: 1.9;
+      color: #79576a;
+    }
+
+    .message p + p {
+      margin-top: 14px;
+    }
+
+    .signature {
+      margin-top: 25px;
+      color: #d94f87;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 21px;
+      font-style: italic;
+    }
+
+    .button-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 50px;
+      padding: 14px 22px;
+      font-size: 14px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+    }
+
+    .primary-btn {
+      color: white;
+      background: linear-gradient(
+        135deg,
+        #ff80ad,
+        #e85a94
+      );
+      box-shadow: 0 8px 20px rgba(232, 90, 148, 0.25);
+    }
+
+    .primary-btn:hover {
+      box-shadow: 0 12px 25px rgba(232, 90, 148, 0.35);
+    }
+
+    .secondary-btn {
+      color: #9c5481;
+      background: #fff0f6;
+      border: 1px solid #ffd2e3;
+    }
+
+    .secondary-btn:hover {
+      background: #ffe3ef;
+    }
+
+    .secret-message {
+      display: none;
+      margin-top: 26px;
+      padding: 24px 20px;
+      border: 1px solid #ffd5e5;
+      border-radius: 20px;
+      background: linear-gradient(
+        135deg,
+        #fff3f8,
+        #f8f1ff
+      );
+      font-size: 15px;
+      line-height: 1.9;
+      animation: messageAppear 0.6s ease both;
+    }
+
+    .secret-message.show {
+      display: block;
+    }
+
+    @keyframes messageAppear {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .secret-icon {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 32px;
+    }
+
+    .secret-message strong {
+      color: #d94f87;
+    }
+
+    .love-message {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 23px;
+      color: #d63384;
+      font-weight: 900;
+    }
+
+    .footer {
+      margin-top: 30px;
+      color: #b38a9f;
+      font-size: 10px;
+      letter-spacing: 2px;
+    }
+
+    .floating-item {
+      position: fixed;
+      top: -40px;
+      z-index: 10;
+      pointer-events: none;
+      animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .birthday-card {
+        padding: 30px 20px;
+        border-radius: 24px;
+      }
+
+      .birthday-icon {
+        font-size: 65px;
+      }
+
+      .message {
+        font-size: 15px;
+      }
+
+      .button-container {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="orb orb-one"></div>
+  <div class="orb orb-two"></div>
+
+  <main class="birthday-card">
+
+    <div class="top-label">
+      A special day ✨
+    </div>
+
+    <div class="birthday-icon" aria-hidden="true">
+      🎂
+    </div>
+
+    <h1>Happy Birthday, BELL! 🎉</h1>
+
+    <p class="subtitle">
+      Today is all about you ♡
+    </p>
+
+    <div class="divider"></div>
+
+    <div class="message">
+      <p>
+        Wishing you a birthday filled with love, laughter,
+        happiness, and all the little things that make you smile. 💗
+      </p>
+
+      <p>
+        May this new chapter of your life bring you beautiful
+        memories, wonderful surprises, and countless reasons
+        to be happy. You deserve the sweetest things in life! 🌷
+      </p>
+
+      <p>
+        Keep shining, keep smiling, and never stop being
+        the amazing person you are. ✨
+      </p>
+    </div>
+
+    <div class="signature">
+      With lots of love, ERI ♡
+    </div>
+
+    <div class="button-container">
+
+      <button
+        class="btn primary-btn"
+        id="musicButton"
+        type="button"
+      >
+        🎵 Play Birthday Music
+      </button>
+
+      <button
+        class="btn secondary-btn"
+        id="surpriseButton"
+        type="button"
+      >
+        💌 Open Your Surprise
+      </button>
+
+    </div>
+
+    <div
+      class="secret-message"
+      id="secretMessage"
+      aria-live="polite"
+    >
+      <span class="secret-icon">💌</span>
+
+      <strong>A little reminder for you...</strong>
+
+      <p>
+        You make the world a little brighter just by being
+        yourself. I'm so grateful to have you in my life. 💕
+      </p>
+
+      <p>
+        Here's to more laughter, unforgettable memories,
+        and beautiful moments together.
+      </p>
+
+      <p>
+        You deserve all the happiness in the world! 🥹💕
+      </p>
+
+      <br>
+
+      <strong class="love-message">I lob u ❤️</strong>
+    </div>
+
+    <div class="footer">
+      MADE WITH ♡ JUST FOR YOU
+    </div>
+
+  </main>
+
+  <!-- Optional music file -->
+  <audio
+    id="birthdayAudio"
+    src="audio/birthday.mp3"
+    loop
+    preload="none"
+  ></audio>
+
+  <script>
+    const surpriseButton = document.getElementById("surpriseButton");
+    const secretMessage = document.getElementById("secretMessage");
+    const musicButton = document.getElementById("musicButton");
+    const birthdayAudio = document.getElementById("birthdayAudio");
+
+    let surpriseOpened = false;
+    let musicPlaying = false;
+
+    // Create falling confetti and hearts
+    function createFallingItems() {
+      const items = ["💗", "💕", "✨", "🌸", "💖", "🎉", "♡"];
+      const totalItems = 45;
+
+      for (let i = 0; i < totalItems; i++) {
+        const item = document.createElement("span");
+
+        item.className = "floating-item";
+        item.textContent = items[
+          Math.floor(Math.random() * items.length)
+        ];
+
+        item.style.left = Math.random() * 100 + "vw";
+        item.style.fontSize = (12 + Math.random() * 18) + "px";
+        item.style.animationDuration = (4 + Math.random() * 5) + "s";
+        item.style.animationDelay = (Math.random() * 2) + "s";
+
+        document.body.appendChild(item);
+
+        item.addEventListener("animationend", () => {
+          item.remove();
+        });
+      }
+    }
+
+    // Open the surprise message
+    surpriseButton.addEventListener("click", () => {
+      surpriseOpened = !surpriseOpened;
+
+      if (surpriseOpened) {
+        secretMessage.classList.add("show");
+        surpriseButton.textContent = "💗 Hide Your Surprise";
+        createFallingItems();
+      } else {
+        secretMessage.classList.remove("show");
+        surpriseButton.textContent = "💌 Open Your Surprise";
+      }
+    });
+
+    // Play or pause birthday music
+    musicButton.addEventListener("click", async () => {
+      if (!musicPlaying) {
+        try {
+          await birthdayAudio.play();
+          musicPlaying = true;
+          musicButton.textContent = "⏸ Pause Birthday Music";
+        } catch (error) {
+          alert(
+            "Add your birthday music file at audio/birthday.mp3, " +
+            "then try again!"
+          );
+        }
+      } else {
+        birthdayAudio.pause();
+        musicPlaying = false;
+        musicButton.textContent = "🎵 Play Birthday Music";
+      }
+    });
+
+    // Start with a little celebration
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      createFallingItems();
     }
   </script>
 
 </body>
-</html>
-
-<html>
-
-<head>
-  <title>Untitled</title>
-</head>
-
-<body>
-
-</body>
-
 </html>
